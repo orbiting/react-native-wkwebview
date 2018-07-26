@@ -291,6 +291,8 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
 - (void)reload
 {
+  NSURLRequest *request = [RCTConvert NSURLRequest:_source];
+
   // Force loadRequest to use updated cookies. Needed when authenticating
   [self loadRequest:request];
 }
