@@ -291,7 +291,8 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
 - (void)reload
 {
-  [_webView reload];
+  // Force loadRequest to use updated cookies. Needed when authenticating
+  [self loadRequest:request];
 }
 
 - (void)stopLoading
