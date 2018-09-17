@@ -18,7 +18,7 @@ import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource'
 import deprecatedPropType from 'react-native/Libraries/Utilities/deprecatedPropType';
 import invariant from 'fbjs/lib/invariant';
 import keyMirror from 'fbjs/lib/keyMirror';
-const WKWebViewManager = NativeModules.WKWebViewManager;
+const WKWebViewManager = NativeModules.CRAWKWebViewManager;
 
 var BGWASH = 'rgba(255,255,255,0.8)';
 
@@ -291,7 +291,7 @@ class WKWebView extends React.Component {
       );
     } else if (this.state.viewState !== WebViewState.IDLE) {
       console.error(
-        'RCTWKWebView invalid state encountered: ' + this.state.loading
+        'CRAWKWebView invalid state encountered: ' + this.state.loading
       );
     }
 
@@ -324,7 +324,7 @@ class WKWebView extends React.Component {
     const messagingEnabled = typeof this.props.onMessage === 'function';
 
     const webView =
-      <RCTWKWebView
+      <CRAWKWebView
         ref={ref => { this.webview = ref; }}
         key="webViewKey"
         style={webViewStyles}
@@ -369,7 +369,7 @@ class WKWebView extends React.Component {
   goForward = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWKWebView.Commands.goForward,
+      UIManager.CRAWKWebView.Commands.goForward,
       null
     );
   };
@@ -380,7 +380,7 @@ class WKWebView extends React.Component {
   goBack = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWKWebView.Commands.goBack,
+      UIManager.CRAWKWebView.Commands.goBack,
       null
     );
   };
@@ -406,7 +406,7 @@ class WKWebView extends React.Component {
     this.setState({ viewState: WebViewState.LOADING });
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWKWebView.Commands.reload,
+      UIManager.CRAWKWebView.Commands.reload,
       null
     );
   };
@@ -417,7 +417,7 @@ class WKWebView extends React.Component {
   stopLoading = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWKWebView.Commands.stopLoading,
+      UIManager.CRAWKWebView.Commands.stopLoading,
       null
     )
   };
@@ -435,7 +435,7 @@ class WKWebView extends React.Component {
   postMessage = (data) => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWKWebView.Commands.postMessage,
+      UIManager.CRAWKWebView.Commands.postMessage,
       [String(data)]
     );
   };
@@ -506,7 +506,7 @@ class WKWebView extends React.Component {
   };
 }
 
-const RCTWKWebView = requireNativeComponent('RCTWKWebView', WKWebView, {
+const CRAWKWebView = requireNativeComponent('CRAWKWebView', WKWebView, {
   nativeOnly: {
     onLoadingStart: true,
     onLoadingError: true,
